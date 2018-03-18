@@ -6,3 +6,7 @@ Info: project for showing skills.
 | /swagger-ui.html                         | GET             | swagger UI                                                       |
 | /contact/{contactId}                     | GET             | get last application for contact                                 |
 
+
+
+# Database Scheme
+![Database](scheme.jpg?raw=true "Database")
