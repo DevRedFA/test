@@ -1,41 +1,20 @@
-CREATE TABLE "contracts" (
-	"id" serial NOT NULL,
-	CONSTRAINT contracts_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
+INSERT INTO products (id, name) VALUES (1, 'PRODUCT_1');
+INSERT INTO products (id, name) VALUES (2, 'PRODUCT_2');
+INSERT INTO products (id, name) VALUES (3, 'PRODUCT_3');
+INSERT INTO products (id, name) VALUES (4, 'PRODUCT_4');
 
+INSERT INTO contracts (id) VALUES (1);
+INSERT INTO contracts (id) VALUES (2);
+INSERT INTO contracts (id) VALUES (3);
+INSERT INTO contracts (id) VALUES (4);
 
+INSERT INTO applications (id, DATE_TIME_CREATED, CONTRACT_ID, PRODUCT_ID) VALUES (1, '2009-06-04 12:00:00', 1, 1);
+INSERT INTO applications (id, DATE_TIME_CREATED, CONTRACT_ID, PRODUCT_ID) VALUES (2, '2009-06-04 13:00:00', 1, 2);
+INSERT INTO applications (id, DATE_TIME_CREATED, CONTRACT_ID, PRODUCT_ID) VALUES (3, '2009-06-04 14:00:00', 1, 3);
+INSERT INTO applications (id, DATE_TIME_CREATED, CONTRACT_ID, PRODUCT_ID) VALUES (4, '2009-06-04 15:00:00', 2, 1);
+INSERT INTO applications (id, DATE_TIME_CREATED, CONTRACT_ID, PRODUCT_ID) VALUES (5, '2009-06-04 16:00:00', 2, 2);
 
-CREATE TABLE "applications" (
-	"id" bigserial NOT NULL,
-	"DT_created" TIMESTAMP NOT NULL,
-	"contract_id" integer NOT NULL,
-	"product_id" integer NOT NULL,
-	CONSTRAINT applications_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-CREATE TABLE "products" (
-	"id" serial NOT NULL,
-	"name" varchar(64) NOT NULL,
-	CONSTRAINT Products_pk PRIMARY KEY ("id")
-) WITH (
-  OIDS=FALSE
-);
-
-
-
-
-ALTER TABLE "applications" ADD CONSTRAINT "applications_fk0" FOREIGN KEY ("contract_id") REFERENCES "contracts"("id");
-ALTER TABLE "applications" ADD CONSTRAINT "applications_fk1" FOREIGN KEY ("product_id") REFERENCES "products"("id");
-
-
---select * from applications where contract_id = 1 ORDER BY "DT_created" DESC, id DESC LIMIT 1
---
---select ap.contract_id, ap.id, ap."DT_created", products."name" from applications as ap
---left JOIN products on products.id = ap.product_id
---where contract_id = 1 ORDER BY "DT_created" DESC, id DESC LIMIT 1
+-- TEST BASE SQL request:
+-- select ap.contract_id, ap.id, ap.DATE_TIME_CREATED, products.name from applications as ap
+--   left JOIN products on products.id = ap.product_id
+-- where contract_id = 2 ORDER BY ap.DATE_TIME_CREATED DESC, id DESC LIMIT 1
