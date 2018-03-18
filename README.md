@@ -9,4 +9,4 @@ Info: project for showing skills.
 
 
 # Database Scheme
-![Database](scheme.jpg?raw=true "Database")
+![Database](image.png?raw=true "Database")
