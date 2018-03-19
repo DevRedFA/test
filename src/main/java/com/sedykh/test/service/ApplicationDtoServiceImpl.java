@@ -2,7 +2,7 @@ package com.sedykh.test.service;
 
 import com.sedykh.test.mapper.ApplicationMapper;
 import com.sedykh.test.model.Application;
-import com.sedykh.test.model.ApplicationDto;
+import com.sedykh.test.dto.ApplicationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

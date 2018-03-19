@@ -2,10 +2,11 @@ package com.sedykh.test.service;
 
 import com.sedykh.test.dao.jpaproxyrepository.ApplicationJpaProxyRepository;
 import com.sedykh.test.model.Application;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 

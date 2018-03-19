@@ -1,6 +1,6 @@
 package com.sedykh.test.service;
 
-import com.sedykh.test.model.ApplicationDto;
+import com.sedykh.test.dto.ApplicationDto;
 
 public interface ApplicationDtoService {
 

@@ -1,6 +1,5 @@
 package com.sedykh.test.dao.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
 
 @Data
 @Entity

@@ -1,5 +1,4 @@
-package com.sedykh.test.model;
-
+package com.sedykh.test.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,7 +23,6 @@ public class ApplicationDto {
   @JsonProperty("CONTACT_ID")
   private long contactId;
 
-  // FIXME: 3/15/2018 find newer version of this
   @JsonProperty("DT_CREATED")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm z")
   private Timestamp dateTimeCreated;

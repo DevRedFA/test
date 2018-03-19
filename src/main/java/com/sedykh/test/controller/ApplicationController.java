@@ -1,6 +1,6 @@
 package com.sedykh.test.controller;
 
-import com.sedykh.test.model.ApplicationDto;
+import com.sedykh.test.dto.ApplicationDto;
 import com.sedykh.test.service.ApplicationDtoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

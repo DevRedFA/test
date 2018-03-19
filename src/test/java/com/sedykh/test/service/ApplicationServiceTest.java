@@ -1,6 +1,6 @@
 package com.sedykh.test.service;
 
-import com.sedykh.test.dao.jpaproxyrepository.ApplicationJpaProxyRepository;
+import com.sedykh.test.dao.jpaproxyrepository.ApplicationJpaProxyRepositoryImpl;
 import com.sedykh.test.model.Application;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class ApplicationServiceTest {
     private ApplicationService applicationService;
 
     @MockBean
-    private ApplicationJpaProxyRepository jpaRepository;
+    private ApplicationJpaProxyRepositoryImpl jpaRepository;
 
     private Application application;
 

@@ -1,7 +1,7 @@
 package com.sedykh.test.service;
 
 import com.sedykh.test.model.Application;
-import com.sedykh.test.model.ApplicationDto;
+import com.sedykh.test.dto.ApplicationDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

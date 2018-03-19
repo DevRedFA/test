@@ -15,26 +15,25 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     private static final String MESSAGE_TO_USER = "Oops, something went wrong. For more details see the log.";
 
+    private static final String ERROR_MESSAGE = "Exception with request: ";
+
     @ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class, NullPointerException.class})
     protected ResponseEntity<Object> handleIllegal(RuntimeException ex, WebRequest request) {
-        log.error(ex.getMessage());
-        ex.printStackTrace();
+        log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
         return handleExceptionInternal(ex, MESSAGE_TO_USER,
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {SecurityException.class, UnsupportedOperationException.class})
     protected ResponseEntity<Object> handleSecurity(RuntimeException ex, WebRequest request) {
-        log.error(ex.getMessage());
-        ex.printStackTrace();
+        log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
         return handleExceptionInternal(ex, "Access denied.",
                 new HttpHeaders(), HttpStatus.FORBIDDEN, request);
     }
 
     @ExceptionHandler(value = {Exception.class})
     protected ResponseEntity<Object> handleUnspecified(RuntimeException ex, WebRequest request) {
-        log.error(ex.getMessage());
-        ex.printStackTrace();
+        log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
         return handleExceptionInternal(ex, MESSAGE_TO_USER,
                 new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
     }

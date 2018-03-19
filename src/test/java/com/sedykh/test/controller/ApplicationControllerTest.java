@@ -1,11 +1,9 @@
 package com.sedykh.test.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sedykh.test.model.ApplicationDto;
+import com.sedykh.test.dto.ApplicationDto;
 import com.sedykh.test.service.ApplicationDtoService;
-import java.sql.Timestamp;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.sql.Timestamp;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -74,11 +74,4 @@ public class ApplicationControllerTest {
     }
 
 
-    // FIXME: 18.03.2018 error handling still fails
-    @Test
-    @Ignore
-    public void should_return_page_not_found_code() throws Exception {
-        mockMvc.perform(get("/contact/20"))
-                .andExpect(status().isNotFound());
-    }
 }

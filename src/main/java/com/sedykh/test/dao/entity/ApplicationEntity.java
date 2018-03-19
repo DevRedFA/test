@@ -16,7 +16,6 @@ import javax.persistence.Table;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-
 @Data
 @Builder
 @Entity
@@ -41,7 +40,5 @@ public class ApplicationEntity {
             nullable = false)
     private ContractEntity contract;
 
-    // FIXME: 3/15/2018 find newer version of this
     private Timestamp dateTimeCreated;
-
 }

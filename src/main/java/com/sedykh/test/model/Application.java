@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 @Data
-// FIXME: 3/15/2018 remove after normal working mapper
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,6 +19,5 @@ public class Application {
 
     private long contactId;
 
-    // FIXME: 3/15/2018 find newer version of this
     private Timestamp dateTimeCreated;
 }

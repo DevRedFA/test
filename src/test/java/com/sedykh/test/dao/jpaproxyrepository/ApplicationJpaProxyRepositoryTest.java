@@ -19,11 +19,11 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {ApplicationJpaProxyRepository.class})
+@ContextConfiguration(classes = {ApplicationJpaProxyRepositoryImpl.class})
 public class ApplicationJpaProxyRepositoryTest {
 
     @Autowired
-    private ApplicationJpaProxyRepository jpaProxyRepository;
+    private ApplicationJpaProxyRepositoryImpl jpaProxyRepository;
 
     @MockBean
     private ApplicationJpaRepository jpaRepository;
@@ -50,7 +50,6 @@ public class ApplicationJpaProxyRepositoryTest {
                 .name("TEST_PRODUCT_3")
                 .build();
 
-
         applicationEntity = ApplicationEntity.builder()
                 .contract(contractEntity)
                 .id(PRODUCT_ENTITY_ID)
@@ -68,6 +67,7 @@ public class ApplicationJpaProxyRepositoryTest {
 
     @Test
     public void should_return_valid_entity() {
+
         //given
         when(jpaRepository.findByContractIdWithLatestCreateTime(CONTRACT_ENTITY_ID)).thenReturn(applicationEntity);
 
