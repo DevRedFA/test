@@ -24,6 +24,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
+    @ExceptionHandler(value = {ServiceException.class})
+    protected ResponseEntity<Object> handleService(RuntimeException ex, WebRequest request) {
+        log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
+        return handleExceptionInternal(ex, MESSAGE_TO_USER,
+                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+    }
+
     @ExceptionHandler(value = {SecurityException.class, UnsupportedOperationException.class})
     protected ResponseEntity<Object> handleSecurity(RuntimeException ex, WebRequest request) {
         log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
