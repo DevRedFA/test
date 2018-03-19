@@ -3,6 +3,7 @@ package com.sedykh.test.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sedykh.test.model.ApplicationDto;
 import com.sedykh.test.service.ApplicationDtoService;
+import java.sql.Timestamp;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -14,8 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
@@ -49,7 +48,7 @@ public class ApplicationControllerTest {
                 .contactId(1)
                 .id(3)
                 .productName("PRODUCT_3")
-                .dateTimeCreated(new Date(1244109600000L))
+                .dateTimeCreated(new Timestamp(1244109600000L))
                 .build();
     }
 

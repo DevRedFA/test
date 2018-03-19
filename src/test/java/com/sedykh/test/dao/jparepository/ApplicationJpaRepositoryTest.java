@@ -1,62 +1,63 @@
 package com.sedykh.test.dao.jparepository;
 
+import static org.junit.Assert.assertTrue;
+
 import com.sedykh.test.dao.entity.ApplicationEntity;
 import com.sedykh.test.dao.entity.ContractEntity;
 import com.sedykh.test.dao.entity.ProductEntity;
+import java.sql.Timestamp;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.sql.Timestamp;
-
-import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+@ActiveProfiles("test")
 public class ApplicationJpaRepositoryTest {
 
-    @Autowired
-    private ApplicationJpaRepository jpaRepository;
+  public static final long PRODUCT_ENTITY_ID = 3L;
 
-    private ApplicationEntity applicationEntity;
+  @Autowired
+  private ApplicationJpaRepository jpaRepository;
 
-    private ContractEntity contractEntity;
+  private ApplicationEntity applicationEntity;
 
-    private ProductEntity productEntity;
+  private ContractEntity contractEntity;
 
-    private final int APPLICATION_ENTITY_ID = 1;
+  private ProductEntity productEntity;
 
-    @Before
-    public void init() {
-        contractEntity = ContractEntity.builder()
-                .id(1L)
-                .build();
+  private static final int CONTRACT_ENTITY_ID = 1;
 
-        productEntity = ProductEntity.builder()
-                .id(3L)
-                .name("PRODUCT_3")
-                .build();
+  @Before
+  public void init() {
+    contractEntity = ContractEntity.builder()
+                                   .id(CONTRACT_ENTITY_ID)
+                                   .build();
 
-        applicationEntity = ApplicationEntity.builder()
-                .contract(contractEntity)
-                .id(APPLICATION_ENTITY_ID)
-                .product(productEntity)
-                .dateTimeCreated(new Timestamp(1244109600000L))
-                .build();
-    }
+    productEntity = ProductEntity.builder()
+                                 .id(PRODUCT_ENTITY_ID)
+                                 .name("TEST_PRODUCT_3")
+                                 .build();
 
-    @Test
-    public void should_return_valid_entity() {
+    applicationEntity = ApplicationEntity.builder()
+                                         .contract(contractEntity)
+                                         .id(PRODUCT_ENTITY_ID)
+                                         .product(productEntity)
+                                         .dateTimeCreated(new Timestamp(1244116800000L))
+                                         .build();
+  }
 
-        //when
-        ApplicationEntity result = jpaRepository.findByContractIdWithLatestCreateTime(APPLICATION_ENTITY_ID);
+  @Test
+  public void should_return_valid_entity() {
+    //when
+    ApplicationEntity result = jpaRepository.findByContractIdWithLatestCreateTime(
+        CONTRACT_ENTITY_ID);
 
-        //then
-        assertTrue("Application Entities is not equals", result.equals(applicationEntity));
-    }
+    //then
+    assertTrue("Application Entities is not equals", result.equals(applicationEntity));
+  }
 }

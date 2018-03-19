@@ -1,17 +1,15 @@
 package com.sedykh.test.model;
 
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 @Data
-// FIXME: 3/15/2018 remove after normal working mapper
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,5 +26,6 @@ public class ApplicationDto {
 
   // FIXME: 3/15/2018 find newer version of this
   @JsonProperty("DT_CREATED")
-  private Date dateTimeCreated;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm z")
+  private Timestamp dateTimeCreated;
 }
