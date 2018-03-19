@@ -1,9 +1,21 @@
 package com.sedykh.test.dao.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 
 @Data
 @Builder
@@ -14,7 +26,7 @@ import java.sql.Timestamp;
 public class ApplicationEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

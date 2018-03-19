@@ -7,9 +7,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static javax.transaction.Transactional.TxType.REQUIRED;
+
 @Service
 @RequiredArgsConstructor
-@Transactional(value = Transactional.TxType.MANDATORY)
+@Transactional(value = REQUIRED)
 public class ApplicationServiceImpl implements ApplicationService {
 
   @Autowired

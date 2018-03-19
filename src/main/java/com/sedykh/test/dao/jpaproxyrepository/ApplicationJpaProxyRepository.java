@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
-import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.MANDATORY;
 
 @Repository
 @RequiredArgsConstructor
-@Transactional(value = REQUIRED)
+@Transactional(value = MANDATORY)
 public class ApplicationJpaProxyRepository {
 
     @Autowired
