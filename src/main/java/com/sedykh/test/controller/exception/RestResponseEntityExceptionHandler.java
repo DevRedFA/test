@@ -27,7 +27,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = {ServiceException.class})
     protected ResponseEntity<Object> handleService(RuntimeException ex, WebRequest request) {
         log.error(ERROR_MESSAGE + request.toString(), ex.fillInStackTrace());
-        return handleExceptionInternal(ex, MESSAGE_TO_USER,
+        return handleExceptionInternal(ex, "Oops, something went wrong. Contact with such id now found.",
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
