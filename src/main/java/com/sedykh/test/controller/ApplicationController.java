@@ -15,8 +15,8 @@ public class ApplicationController {
     @Autowired
     ApplicationDtoService applicationDtoService;
 
-    @GetMapping("/contact/{contactId}")
     @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/contact/{contactId}", produces = {"application/json", "application/xml"})
     public ApplicationDto getLastApplication(@PathVariable("contactId") Long contactId) {
         return applicationDtoService.findByContractIdWithLatestCreateTime(contactId);
     }
