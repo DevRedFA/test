@@ -28,7 +28,7 @@ public class ApplicationServiceTest {
     @MockBean
     private ApplicationJpaProxyRepositoryImpl jpaRepository;
 
-    private Application application;
+    private Application expectedApplication;
 
     private static final int CONTRACT_ENTITY_ID = 1;
 
@@ -39,7 +39,7 @@ public class ApplicationServiceTest {
     @Before
     public void init() {
 
-        application = Application.builder()
+        expectedApplication = Application.builder()
                 .contactId(CONTRACT_ENTITY_ID)
                 .id(PRODUCT_ENTITY_ID)
                 .productName("TEST_PRODUCT_3")
@@ -50,13 +50,13 @@ public class ApplicationServiceTest {
     @Test
     public void should_return_valid_object() {
         //given
-        when(jpaRepository.findByContractIdWithLatestCreateTime(CONTRACT_ENTITY_ID)).thenReturn(application);
+        when(jpaRepository.findByContractIdWithLatestCreateTime(CONTRACT_ENTITY_ID)).thenReturn(expectedApplication);
 
         //when
         Application result = applicationService.findByContractIdWithLatestCreateTime(
                 CONTRACT_ENTITY_ID);
 
         //then
-        assertTrue("Application Entities is not equals", result.equals(application));
+        assertTrue("Application Entities is not equals", result.equals(expectedApplication));
     }
 }

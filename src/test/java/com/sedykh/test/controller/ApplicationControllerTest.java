@@ -28,9 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ApplicationController.class)
 public class ApplicationControllerTest {
 
-    @Autowired
-    private ApplicationController applicationController;
-
     @MockBean
     private ApplicationDtoService applicationDtoService;
 
@@ -40,12 +37,14 @@ public class ApplicationControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    private ApplicationDto applicationDto;
+    private ApplicationDto expectedApplicationDto;
+
+    private static final int CONTRACT_ENTITY_ID = 1;
 
     @Before
     public void init() {
-        applicationDto = ApplicationDto.builder()
-                .contactId(1)
+        expectedApplicationDto = ApplicationDto.builder()
+                .contactId(CONTRACT_ENTITY_ID)
                 .id(3)
                 .productName("PRODUCT_3")
                 .dateTimeCreated(new Timestamp(1244109600000L))
@@ -56,13 +55,12 @@ public class ApplicationControllerTest {
     public void should_return_valid_application() throws Exception {
 
         //given
-        int id = 1;
-        String expected = objectMapper.writeValueAsString(applicationDto);
-        when(applicationDtoService.findByContractIdWithLatestCreateTime(id)).thenReturn(applicationDto);
+        String expected = objectMapper.writeValueAsString(expectedApplicationDto);
+        when(applicationDtoService.findByContractIdWithLatestCreateTime(CONTRACT_ENTITY_ID)).thenReturn(expectedApplicationDto);
 
 
         //when
-        MvcResult mvcResult = mockMvc.perform(get("/contact/" + id))
+        MvcResult mvcResult = mockMvc.perform(get("/contact/" + CONTRACT_ENTITY_ID))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8)).andReturn();
 
@@ -70,7 +68,7 @@ public class ApplicationControllerTest {
 
         //then
         assertEquals(content, expected);
-        verify(applicationDtoService, times(1)).findByContractIdWithLatestCreateTime(id);
+        verify(applicationDtoService, times(1)).findByContractIdWithLatestCreateTime(CONTRACT_ENTITY_ID);
     }
 
 

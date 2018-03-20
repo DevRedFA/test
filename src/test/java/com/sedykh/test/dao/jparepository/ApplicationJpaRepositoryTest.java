@@ -5,7 +5,9 @@ import static org.junit.Assert.assertTrue;
 import com.sedykh.test.dao.entity.ApplicationEntity;
 import com.sedykh.test.dao.entity.ContractEntity;
 import com.sedykh.test.dao.entity.ProductEntity;
+
 import java.sql.Timestamp;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,11 +24,13 @@ public class ApplicationJpaRepositoryTest {
     @Autowired
     private ApplicationJpaRepository jpaRepository;
 
-    private ApplicationEntity applicationEntity;
+    private ApplicationEntity expectedApplicationEntity;
 
     private static final int CONTRACT_ENTITY_ID = 1;
 
     private static final long PRODUCT_ENTITY_ID = 3L;
+
+    private static final long TIME = 1244116800000L;
 
     @Before
     public void init() {
@@ -39,11 +43,11 @@ public class ApplicationJpaRepositoryTest {
                 .name("TEST_PRODUCT_3")
                 .build();
 
-        applicationEntity = ApplicationEntity.builder()
+        expectedApplicationEntity = ApplicationEntity.builder()
                 .contract(contractEntity)
                 .id(PRODUCT_ENTITY_ID)
                 .product(productEntity)
-                .dateTimeCreated(new Timestamp(1244113200000L))
+                .dateTimeCreated(new Timestamp(TIME))
                 .build();
     }
 
@@ -54,6 +58,6 @@ public class ApplicationJpaRepositoryTest {
                 CONTRACT_ENTITY_ID);
 
         //then
-        assertTrue("Application Entities is not equals", result.equals(applicationEntity));
+        assertTrue("Application Entities is not equals", result.equals(expectedApplicationEntity));
     }
 }

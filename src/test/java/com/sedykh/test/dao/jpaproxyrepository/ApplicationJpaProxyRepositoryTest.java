@@ -28,7 +28,7 @@ public class ApplicationJpaProxyRepositoryTest {
     @MockBean
     private ApplicationJpaRepository jpaRepository;
 
-    private Application application;
+    private Application ecpectedApplication;
 
     private ApplicationEntity applicationEntity;
 
@@ -57,7 +57,7 @@ public class ApplicationJpaProxyRepositoryTest {
                 .dateTimeCreated(new Timestamp(TIME))
                 .build();
 
-        application = Application.builder()
+        ecpectedApplication = Application.builder()
                 .contactId(CONTRACT_ENTITY_ID)
                 .id(PRODUCT_ENTITY_ID)
                 .productName("TEST_PRODUCT_3")
@@ -76,6 +76,6 @@ public class ApplicationJpaProxyRepositoryTest {
                 CONTRACT_ENTITY_ID);
 
         //then
-        assertTrue("Application Entities is not equals", result.equals(application));
+        assertTrue("Application Entities is not equals", result.equals(ecpectedApplication));
     }
 }
